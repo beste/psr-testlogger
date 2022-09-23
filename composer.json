@@ -1,0 +1,63 @@
+{
+    "name": "beste/psr-testlogger",
+    "description": "PSR-3 compliant test logger for developers who like tests and want to check if their application logs messages as they expect.",
+    "keywords": ["psr", "psr-3", "log", "test", "tests", "phpunit"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jérôme Gamez",
+            "email": "jerome@gamez.name"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan": "^1.8.2",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.1.1",
+        "phpstan/phpstan-strict-rules": "^1.4",
+        "phpunit/phpunit": "^9.5.23"
+    },
+    "autoload": {
+        "psr-4": {
+            "Beste\\Psr\\Log\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Beste\\Psr\\Log\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "cs": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --verbose",
+        "install-dev-tools": [
+            "mkdir --parents .build",
+            "@install-php-cs-fixer"
+        ],
+        "install-php-cs-fixer": [
+            "mkdir --parents tools/php-cs-fixer",
+            "composer require --working-dir=tools/php-cs-fixer beste/php-cs-fixer-config"
+        ],
+        "phpstan": "vendor/bin/phpstan analyse",
+        "phpunit": "vendor/bin/phpunit",
+        "test": [
+            "@phpstan",
+            "@phpunit"
+        ]
+    },
+    "scripts-descriptions": {
+        "cs": "Applies coding standards",
+        "phpstan": "Runs static analysis with PHPStan",
+        "phpunit": "Runs tests with PHPUnit",
+        "test": "Runs static analysis and test suites"
+    }
+}
