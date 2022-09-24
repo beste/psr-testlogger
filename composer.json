@@ -1,7 +1,7 @@
 {
     "name": "beste/psr-testlogger",
     "description": "PSR-3 compliant test logger for developers who like tests and want to check if their application logs messages as they expect.",
-    "keywords": ["psr", "psr-3", "log", "test", "tests", "phpunit"],
+    "keywords": ["log", "logging", "psr-3", "testing"],
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -11,7 +11,9 @@
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ext-mbstring": "*",
+        "psr/log": "^2.0|^3.0"
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.1",
@@ -19,7 +21,8 @@
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.1.1",
         "phpstan/phpstan-strict-rules": "^1.4",
-        "phpunit/phpunit": "^9.5.23"
+        "phpunit/phpunit": "^9.5.23",
+        "symfony/var-dumper": "^6.1"
     },
     "autoload": {
         "psr-4": {
@@ -28,6 +31,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Beste\\Psr\\Log\\Example\\": "examples",
             "Beste\\Psr\\Log\\Tests\\": "tests"
         }
     },
@@ -38,6 +42,10 @@
         "sort-packages": true
     },
     "scripts": {
+        "coverage": [
+            "XDEBUG_MODE=coverage phpunit --testdox --coverage-html=.build/coverage",
+            "open .build/coverage/index.html"
+        ],
         "cs": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --verbose",
         "install-dev-tools": [
             "mkdir --parents .build",

@@ -8,7 +8,7 @@ on:
 
 jobs:
   tests:
-    name: PHP ${{ matrix.php }}
+    name: PHP ${{ matrix.php }} (${{ matrix.dependencies}} dependencies)
     runs-on: ubuntu-20.04
 
     strategy:

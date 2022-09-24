@@ -4,3 +4,8 @@ parameters:
 	paths:
 		- src/
 		- tests/
+
+	ignoreErrors:
+		-
+			message: '#Parameter \#1 \$level.+contravariant#'
+			path: src/TestLogger.php
