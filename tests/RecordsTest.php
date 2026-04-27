@@ -27,7 +27,7 @@ final class RecordsTest extends TestCase
     /**
      * @test
      */
-    public function it_is_empty_when_created(): void
+    public function itIsEmptyWhenCreated(): void
     {
         self::assertLogCount(0, $this->records);
     }
@@ -35,7 +35,7 @@ final class RecordsTest extends TestCase
     /**
      * @test
      */
-    public function it_accepts_new_records(): void
+    public function itAcceptsNewRecords(): void
     {
         $this->records->add(Record::with(LogLevel::INFO, 'message', []));
 
@@ -45,7 +45,7 @@ final class RecordsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_be_filtered_by_level(): void
+    public function itCanBeFilteredByLevel(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
@@ -62,21 +62,21 @@ final class RecordsTest extends TestCase
     /**
      * @test
      */
-    public function it_provides_a_unique_list_of_included_levels(): void
+    public function itProvidesAUniqueListOfIncludedLevels(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
         $this->records->add(self::simpleRecord(LogLevel::INFO));
         $this->records->add(self::simpleRecord(LogLevel::DEBUG));
 
-        self::assertCount(3, $this->records->levels());
-        self::assertEqualsCanonicalizing([LogLevel::NOTICE, LogLevel::INFO, LogLevel::DEBUG], $this->records->levels());
+        $this->assertCount(3, $this->records->levels());
+        $this->assertEqualsCanonicalizing([LogLevel::NOTICE, LogLevel::INFO, LogLevel::DEBUG], $this->records->levels());
     }
 
     /**
      * @test
      */
-    public function it_can_be_filtered_by_messages_containing(): void
+    public function itCanBeFilteredByMessagesContaining(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE, 'one two'));
         $this->records->add(self::simpleRecord(LogLevel::INFO, 'two three'));
@@ -90,7 +90,7 @@ final class RecordsTest extends TestCase
     /**
      * @test
      */
-    public function it_can_be_filtered_by_messages_that_match(): void
+    public function itCanBeFilteredByMessagesThatMatch(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE, 'one two'));
         $this->records->add(self::simpleRecord(LogLevel::INFO, 'two three'));
@@ -104,24 +104,24 @@ final class RecordsTest extends TestCase
     /**
      * @test
      */
-    public function it_tells_if_it_includes_certain_kind_of_messages(): void
+    public function itTellsIfItIncludesCertainKindOfMessages(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
         $this->records->add(self::simpleRecord(LogLevel::INFO));
         $this->records->add(self::simpleRecord(LogLevel::DEBUG));
 
-        self::assertTrue($this->records->includeMessagesWithLevel(LogLevel::NOTICE));
-        self::assertFalse($this->records->includeMessagesWithLevel(LogLevel::CRITICAL));
+        $this->assertTrue($this->records->includeMessagesWithLevel(LogLevel::NOTICE));
+        $this->assertFalse($this->records->includeMessagesWithLevel(LogLevel::CRITICAL));
 
-        self::assertTrue($this->records->includeMessagesContaining('notice'));
-        self::assertFalse($this->records->includeMessagesContaining('critical'));
+        $this->assertTrue($this->records->includeMessagesContaining('notice'));
+        $this->assertFalse($this->records->includeMessagesContaining('critical'));
 
-        self::assertTrue($this->records->includeMessagesMatching('/not/i'));
-        self::assertFalse($this->records->includeMessagesMatching('/crit/i'));
+        $this->assertTrue($this->records->includeMessagesMatching('/not/i'));
+        $this->assertFalse($this->records->includeMessagesMatching('/crit/i'));
 
-        self::assertTrue($this->records->includeMessagesBy(static fn (Record $r) => str_contains((string) $r->message, 'n')));
-        self::assertFalse($this->records->includeMessagesBy(static fn (Record $r) => str_contains((string) $r->message, 'l')));
+        $this->assertTrue($this->records->includeMessagesBy(static fn (Record $r) => str_contains((string) $r->message, 'n')));
+        $this->assertFalse($this->records->includeMessagesBy(static fn (Record $r) => str_contains((string) $r->message, 'l')));
     }
 
     private static function assertLogCount(int $expectedCount, Records $log): void

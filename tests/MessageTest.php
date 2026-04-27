@@ -16,29 +16,29 @@ final class MessageTest extends TestCase
     /**
      * @test
      */
-    public function it_matches_a_value_containing(): void
+    public function itMatchesAValueContaining(): void
     {
         $message = new Message('This is a test message');
 
-        self::assertTrue($message->contains('test'));
-        self::assertTrue($message->contains('Test'));
-        self::assertTrue($message->contains('is a'));
+        $this->assertTrue($message->contains('test'));
+        $this->assertTrue($message->contains('Test'));
+        $this->assertTrue($message->contains('is a'));
     }
 
     /**
      * @test
      */
-    public function it_matches_a_value_by_regular_expression(): void
+    public function itMatchesAValueByRegularExpression(): void
     {
         $message = new Message('The value 1234 is a number');
 
-        self::assertTrue($message->matches('/\d/'));
+        $this->assertTrue($message->matches('/\d/'));
     }
 
     /**
      * @test
      */
-    public function it_replaces_placeholders(): void
+    public function itReplacesPlaceholders(): void
     {
         $date = new DateTimeImmutable();
         $formattedDate = $date->format(\DATE_ATOM);
@@ -52,7 +52,7 @@ final class MessageTest extends TestCase
             'unknown' => 'unreplaced',
         ]);
 
-        self::assertSame(
+        $this->assertSame(
             "A message with a {$formattedDate}, an [object], an [array] and whatever",
             (string) $message,
         );

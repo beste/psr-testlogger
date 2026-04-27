@@ -16,13 +16,14 @@
         "psr/log": "^2.0 || ^3.0.2"
     },
     "require-dev": {
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^1.8.2",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.1.1",
-        "phpstan/phpstan-strict-rules": "^1.4",
-        "phpunit/phpunit": "^9.5.23",
-        "symfony/var-dumper": "^6.1"
+        "friendsofphp/php-cs-fixer": "3.95.1",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan": "^2.1.51",
+        "phpstan/phpstan-deprecation-rules": "^2.0.4",
+        "phpstan/phpstan-phpunit": "^2.0.16",
+        "phpstan/phpstan-strict-rules": "^2.0.10",
+        "phpunit/phpunit": "^12.5.23",
+        "symfony/var-dumper": "^8.0.8"
     },
     "autoload": {
         "psr-4": {
@@ -46,15 +47,7 @@
             "XDEBUG_MODE=coverage phpunit --testdox --coverage-html=.build/coverage",
             "open .build/coverage/index.html"
         ],
-        "cs": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --verbose",
-        "install-dev-tools": [
-            "mkdir --parents .build",
-            "@install-php-cs-fixer"
-        ],
-        "install-php-cs-fixer": [
-            "mkdir --parents tools/php-cs-fixer",
-            "composer require --working-dir=tools/php-cs-fixer beste/php-cs-fixer-config"
-        ],
+        "cs": "vendor/bin/php-cs-fixer fix --diff --verbose",
         "phpstan": "vendor/bin/phpstan analyse",
         "phpunit": "vendor/bin/phpunit",
         "test": [

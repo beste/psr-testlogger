@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Beste\Psr\Log;
 
 /**
- * @phpstan-type BestePsrLogContextShape array<string, mixed>
+ * @phpstan-type BestePsrLogContextShape array<mixed>
  */
 final class Context
 {

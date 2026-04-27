@@ -99,8 +99,8 @@ final class Records implements Countable
      */
     public function levels(): array
     {
-        return array_unique(
+        return array_values(array_unique(
             array_map(static fn (Record $r) => $r->level, $this->records),
-        );
+        ));
     }
 }

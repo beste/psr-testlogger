@@ -52,7 +52,7 @@ final class Message implements Stringable
         $replacements = [];
 
         foreach ($context->data as $key => $value) {
-            $placeholder = '{' . $key . '}';
+            $placeholder = '{'.$key.'}';
 
             if (str_contains($message, $placeholder) === false) {
                 continue;
@@ -63,7 +63,7 @@ final class Message implements Stringable
             } elseif ($value instanceof DateTimeInterface) {
                 $replacements[$placeholder] = $value->format(\DATE_ATOM);
             } else {
-                $replacements[$placeholder] = '[' . \gettype($value) . ']';
+                $replacements[$placeholder] = '['.\gettype($value).']';
             }
         }
 

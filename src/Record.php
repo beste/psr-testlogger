@@ -10,7 +10,7 @@ use Psr\Log\LogLevel;
  * @phpstan-type BestePsrLogRecordShape array{
  *     level: LogLevel::*,
  *     message: string,
- *     context: array<string, mixed>
+ *     context: array<mixed>
  * }
  */
 final class Record
@@ -25,12 +25,10 @@ final class Record
 
     /**
      * @param LogLevel::* $level
-     * @param array<string, mixed> $context
+     * @param array<mixed> $context
      */
     public static function with(string $level, string $message, array $context): self
     {
-        $c = new Context($context);
-
         return new self(
             $level,
             new Message($message, $context),

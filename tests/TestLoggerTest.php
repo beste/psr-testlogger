@@ -15,7 +15,7 @@ final class TestLoggerTest extends TestCase
     /**
      * @test
      */
-    public function it_logs_records(): void
+    public function itLogsRecords(): void
     {
         $logger = TestLogger::create();
 
@@ -28,6 +28,6 @@ final class TestLoggerTest extends TestCase
         $logger->info('Info', ['key' => 'value']);
         $logger->debug('Debug', ['key' => 'value']);
 
-        self::assertCount(8, $logger->records);
+        $this->assertCount(8, $logger->records);
     }
 }
