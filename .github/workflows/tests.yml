@@ -20,6 +20,10 @@ jobs:
         dependencies:
           - "lowest"
           - "highest"
+        include:
+          - php: "8.6"
+            dependencies: "highest"
+            composer-options: "--ignore-platform-req=php+"
 
     env:
       extensions: ctype, dom, intl, json, mbstring, openssl, xml, zip, zlib
