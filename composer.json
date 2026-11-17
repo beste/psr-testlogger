@@ -22,8 +22,7 @@
         "phpstan/phpstan-deprecation-rules": "^2.0.4",
         "phpstan/phpstan-phpunit": "^2.0.16",
         "phpstan/phpstan-strict-rules": "^2.0.10",
-        "phpunit/phpunit": "^12.5.23",
-        "symfony/var-dumper": "^8.0.8"
+        "phpunit/phpunit": "^12.5.23"
     },
     "autoload": {
         "psr-4": {
