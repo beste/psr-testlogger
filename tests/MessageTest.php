@@ -6,6 +6,7 @@ namespace Beste\Psr\Log\Tests;
 
 use Beste\Psr\Log\Message;
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,9 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class MessageTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itMatchesAValueContaining(): void
     {
         $message = new Message('This is a test message');
@@ -25,9 +24,7 @@ final class MessageTest extends TestCase
         $this->assertTrue($message->contains('is a'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itMatchesAValueByRegularExpression(): void
     {
         $message = new Message('The value 1234 is a number');
@@ -35,9 +32,7 @@ final class MessageTest extends TestCase
         $this->assertTrue($message->matches('/\d/'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itReplacesPlaceholders(): void
     {
         $date = new DateTimeImmutable();

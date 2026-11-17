@@ -7,6 +7,7 @@ namespace Beste\Psr\Log\Tests;
 use Beste\Psr\Log\Context;
 use Beste\Psr\Log\Record;
 use Beste\Psr\Log\Records;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
 
@@ -24,17 +25,13 @@ final class RecordsTest extends TestCase
         $this->records = Records::empty();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itIsEmptyWhenCreated(): void
     {
         self::assertLogCount(0, $this->records);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itAcceptsNewRecords(): void
     {
         $this->records->add(Record::with(LogLevel::INFO, 'message', []));
@@ -42,9 +39,7 @@ final class RecordsTest extends TestCase
         self::assertLogCount(1, $this->records);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanBeFilteredByLevel(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
@@ -59,9 +54,7 @@ final class RecordsTest extends TestCase
         self::assertLogCount(3, $this->records->filteredByLevel(LogLevel::NOTICE, LogLevel::INFO));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itProvidesAUniqueListOfIncludedLevels(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
@@ -73,9 +66,7 @@ final class RecordsTest extends TestCase
         $this->assertEqualsCanonicalizing([LogLevel::NOTICE, LogLevel::INFO, LogLevel::DEBUG], $this->records->levels());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanBeFilteredByMessagesContaining(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE, 'one two'));
@@ -87,9 +78,7 @@ final class RecordsTest extends TestCase
         self::assertLogCount(1, $this->records->filteredByMessageContaining('four'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itCanBeFilteredByMessagesThatMatch(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE, 'one two'));
@@ -101,9 +90,7 @@ final class RecordsTest extends TestCase
         self::assertLogCount(3, $this->records->filteredByMessageMatching('/two/i'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itTellsIfItIncludesCertainKindOfMessages(): void
     {
         $this->records->add(self::simpleRecord(LogLevel::NOTICE));
