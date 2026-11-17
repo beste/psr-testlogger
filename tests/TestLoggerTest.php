@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Beste\Psr\Log\Tests;
 
 use Beste\Psr\Log\TestLogger;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,9 +13,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class TestLoggerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itLogsRecords(): void
     {
         $logger = TestLogger::create();

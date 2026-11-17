@@ -53,7 +53,7 @@ final class SubjectTest extends \PHPUnit\Framework\TestCase
         $this->logger = TestLogger::create();
     }
     
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_does_something(): void
     {
         $this->subject->doSomething();
